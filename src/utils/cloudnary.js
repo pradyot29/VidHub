@@ -7,7 +7,7 @@ import fs from "fs"; // file system h, file ko read/write/remove/permissionchang
     api_secret: process.env.CLOUDINARY_API_SECRET 
 });
 
-const uploadOnCloudinary = async (localFilePath)=> {
+const uploadOnCloudinary = async ( localFilePath)=> {
     try{
 if(!localFilePath)
     return null
@@ -17,8 +17,9 @@ const response = await cloudinary.uploader.upload(localFilePath , {
     resource_type:"auto" // khud detect krlo jo bhi file aari h
 })
 //file has been uploaded successfully
-console.log("file is uploaded on cloudinary" , response.url)
-return response
+//console.log("file is uploaded on cloudinary" , response.url)
+fs.unlinkSync(localFilePath)
+return response; 
     }
     catch{
 fs.unlinkSync(localFilePath) // remove the locally saved temporary files as the upload got failed

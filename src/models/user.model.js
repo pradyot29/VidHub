@@ -55,7 +55,7 @@ timestamps : true
 )
 userSchema.pre("save", async function(next) {
     if( ! this.isModified("password"))return next(); // agar password modify nhi hua to no need to apply hook
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 

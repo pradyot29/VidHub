@@ -1,8 +1,9 @@
 import { Router } from "express";
 
-import {registerUser} from "../controllers/user.controller.js"; // aise import tb hi le skte h jb export default na ho
+import {logOutUser, loginUser, registerUser} from "../controllers/user.controller.js"; // aise import tb hi le skte h jb export default na ho
 
 import {upload} from "../middlewares/multer.middleware.js"
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router()
 
 
@@ -21,7 +22,15 @@ router.route("/register").post(
     ]
     ),
 
-    registerUser) // route ka naam register hai (postman me yehi enter hoga)
+    registerUser) 
+    
+    
+    // route ka naam register hai (postman me yehi enter hoga)
 //method ka naam registeruser hai
 //router.route("/login").post(login)
+
+router.route("/login").post(loginUser)
+
+//secured routes
+router.route("/logout").post(verifyJWT, logOutUser)
 export default router  

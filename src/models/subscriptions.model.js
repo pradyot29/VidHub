@@ -5,9 +5,9 @@ type: Schema.Types.ObjectId, // one who is subscribing
 ref:"User"
 },
 channel:{
-type: Schema.Types.ObjectId , // onw to whom subscriber is subscribing
+type: Schema.Types.ObjectId , // one to whom subscriber is subscribing
 ref:"User"
 }
 } , {timestamps: true})
 
-export const Subscription = mongoose.model("Subscription", subscriptionSchema)
+export const Subscription = mongoose.model("Subscription", subscriptionSchema) 
